@@ -1,7 +1,14 @@
 import * as Popover from "@radix-ui/react-popover";
 import { useMemo, useRef, useState, useEffect, useId } from "react";
 
-export default function Combobox({ options = [], value, onChange, placeholder = "Selecionar…", searchPlaceholder = "Buscar…" }) {
+export default function Combobox({
+  label,
+  options = [],
+  value,
+  onChange,
+  placeholder = "Selecionar…",
+  searchPlaceholder = "Buscar…"
+}) {
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
   const inputRef = useRef(null);

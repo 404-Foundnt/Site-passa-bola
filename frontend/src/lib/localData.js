@@ -1,6 +1,13 @@
-ï»¿let dataPromise;
+let dataPromise;
 
-const API_BASE_URL = (import.meta.env?.VITE_API_URL || "http://localhost:5050").replace(/\/$/, "");
+const resolveBaseUrl = () => {
+  const envUrl = import.meta.env?.VITE_API_URL;
+  if (envUrl) return envUrl.replace(/\/$/, "");
+  if (typeof window !== "undefined") return ""; // usa mesma origem (proxy do Vite ou produção)
+  return "http://localhost:5050";
+};
+
+const API_BASE_URL = resolveBaseUrl();
 const DATA_ENDPOINT = `${API_BASE_URL}/api/data`;
 
 export function resetLocalDataCache() {

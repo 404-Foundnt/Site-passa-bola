@@ -1,38 +1,45 @@
 ﻿# Passa a Bola API
 
-Servidor Express responsável por fornecer o JSON local que o frontend consume.
+Servidor Express responsável por fornecer o JSON local e os endpoints de cadastro consumidos pelo frontend.
 
 ## Requisitos
 - Node.js 18+
 
 ## Instalação
-`ash
+```bash
 npm install
-`
+```
 
 ## Desenvolvimento
-`ash
+```bash
 npm run dev
-`
+```
 Servidor disponível em http://localhost:5050.
 
 ## Produção
-`ash
+```bash
 npm run start
-`
+```
 
-## Endpoints
-- GET /api — informações gerais
-- GET /api/data — JSON completo
-- GET /api/dashboard — dados do dashboard
-- GET /api/ticker
-- GET /api/badges
-- GET /api/matches
-- GET /api/leaderboard
-- GET /api/teams
-- GET /api/team/:id
-- GET /api/public/home
-- GET /api/public/tournaments
+## Endpoints principais
+- `GET /api` — mapa geral
+- `GET /api/data` — JSON completo (`data/app-data.json`)
+- `GET /api/dashboard`
+- `GET /api/ticker`
+- `GET /api/badges`
+- `GET /api/matches`
+- `GET /api/leaderboard`
+- `GET /api/teams`
+- `GET /api/team/:id`
+- `GET /api/public/home`
+- `GET /api/public/tournaments`
 
-Todos os dados vêm de data/app-data.json. Atualize o arquivo para alterar o conteúdo servido ao frontend.
+## Usuárias (formulário do frontend)
+Os cadastros ficam em `data/users.json`.
 
+- `GET /api/users`
+- `GET /api/users/:id`
+- `POST /api/users` — cria registro `{ name, email, password, ... }`
+- `POST /api/login` — valida credenciais
+
+Atualize `data/app-data.json` e `data/users.json` para alterar o conteúdo servido.
