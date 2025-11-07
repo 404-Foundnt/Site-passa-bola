@@ -68,17 +68,17 @@ export default function Team() {
           </div>
           <div className="md:col-span-2">
             <div className="text-white/60 text-sm">Elenco</div>
-            <ul className="mt-3 grid md:grid-cols-2 gap-2">
+            <ul className="mt-3 grid grid-cols-1 sm:grid-cols-2 gap-2">
               {filtered.map((item) => {
                 const slug = item.id ? String(item.id) : slugify(item.name);
                 return (
                   <li
                     key={item.id}
-                    className="p-3 rounded-xl bg-white/5 border border-white/10 flex items-center justify-between cursor-pointer hover:bg-white/10"
+                    className="p-3 rounded-xl bg-white/5 border border-white/10 flex items-center justify-between cursor-pointer hover:bg-white/10 text-sm min-w-0"
                     onClick={() => (window.location.href = `/app/player/${slug}`)}
                     title="Ver ficha da jogadora"
                   >
-                    <span>{item.name}</span>
+                    <span className="truncate">{item.name}</span>
                     <span className="text-xs text-white/60">{item.position}</span>
                   </li>
                 );
@@ -93,7 +93,7 @@ export default function Team() {
 
       <div className="card">
         <div className="text-white/60 text-sm mb-3">Confirmações</div>
-        <div className="grid md:grid-cols-3 gap-2">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">
           {availability.map((item) => (
             <div key={item.id} className="p-3 rounded-xl bg-white/5 border border-white/10">
               <div className="text-sm font-semibold">{item.name}</div>

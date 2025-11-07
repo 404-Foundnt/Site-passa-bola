@@ -34,8 +34,8 @@ export default function Leaderboard() {
   return (
     <div className="card">
       <div className="text-sm text-white/60 mb-2">Ranking semanal</div>
-      <div className="mui-surface overflow-x-auto">
-        <div className="min-w-[640px]" style={{ height: 480 }}>
+      <div className="mui-surface overflow-x-auto overscroll-x-contain">
+        <div className="min-w-[600px]" style={{ height: 480 }}>
           <DataGrid
             rows={data}
             columns={columns}

@@ -70,8 +70,8 @@ export default function Matches(){
       </div>
       <div className="card">
         <div className="text-sm text-white/60 mb-2">Partidas</div>
-        <div className="mui-surface overflow-x-auto">
-          <div className="min-w-[720px]" style={{ height: 520 }}>
+        <div className="mui-surface overflow-x-auto overscroll-x-contain">
+          <div className="min-w-[600px]" style={{ height: 520 }}>
             <DataGrid rows={rows} columns={columns} pageSizeOptions={[5, 10, 25]} initialState={{ pagination: { paginationModel: { pageSize: 10 } } }} disableRowSelectionOnClick />
           </div>
         </div>
