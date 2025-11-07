@@ -52,15 +52,9 @@ export default function Leaderboard() {
               window.location.href = `/app/player/${playerId}`;
             }}
             sx={{
-              bgcolor: "rgba(255,255,255,.05)",
-              border: "1px solid rgba(255,255,255,.1)",
-              borderRadius: "12px",
+              border: 0,
               "& .MuiDataGrid-row": { cursor: "pointer" },
-              "& .MuiDataGrid-columnHeaders": { bgcolor: "rgba(255,255,255,.06)" },
-              "& .MuiDataGrid-cell": { borderColor: "rgba(255,255,255,.08)" },
-              "& .MuiDataGrid-row:nth-of-type(odd)": { bgcolor: "rgba(255,255,255,.03)" },
-              "& .MuiDataGrid-row:hover": { bgcolor: "rgba(124,58,237,.12)" },
-              "& .MuiDataGrid-footerContainer": { bgcolor: "rgba(255,255,255,.06)" },
+              "& .MuiDataGrid-row:hover": { backgroundColor: "rgba(124,58,237,.08)" },
               "& .rank-1": { boxShadow: "inset 4px 0 0 #16A34A" },
               "& .rank-2": { boxShadow: "inset 4px 0 0 #22c55e" },
               "& .rank-3": { boxShadow: "inset 4px 0 0 #34d399" }
