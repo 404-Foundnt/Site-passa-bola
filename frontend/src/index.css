@@ -1,0 +1,151 @@
+@import "tailwindcss";
+
+@theme {
+  --color-pb-lilas: #7c3aed;
+  --color-pb-verde: #16a34a;
+  --color-pb-rosa: #d56aa0;
+  --radius-xl2: 1.25rem;
+  --shadow-soft: 0 10px 30px -12px rgba(0,0,0,.25);
+}
+
+:root {
+  color-scheme: dark;
+  --bg: #0f0b1d;
+  --bg-dark: #0f0b1d;
+  --bg-off-dark: rgba(255,255,255,0.04);
+  --text-light: rgba(255,255,255,0.95);
+  --text-muted: rgba(255,255,255,0.7);
+  --border-color: rgba(255,255,255,0.12);
+  --primary-color: var(--color-pb-verde);
+  --accent-color: var(--color-pb-lilas);
+  --secondary-color: var(--color-pb-rosa);
+}
+
+body {
+  @apply bg-[color:var(--bg)] text-white antialiased;
+}
+
+.card {
+  @apply rounded-2xl bg-white/5 backdrop-blur p-5 border border-white/10;
+  box-shadow: var(--shadow-soft);
+}
+
+.card-border { @apply border border-white/10; }
+.btn { @apply inline-flex items-center justify-center rounded-xl px-4 py-2 font-medium transition active:scale-95; }
+.btn-primary { @apply bg-pb-verde text-white hover:bg-emerald-500 font-semibold rounded-full px-5 py-2; }
+.btn-ghost { @apply bg-white/5 hover:bg-white/10 rounded-full px-4 py-2; }
+.btn-secondary { @apply border border-white/15 text-white/80 bg-transparent hover:bg-white/10 rounded-full px-5 py-2 font-semibold transition; }
+.btn-outline-sport { @apply border border-pb-lilas/60 text-pb-lilas rounded-full px-5 py-2 font-semibold hover:bg-pb-lilas/10 transition; }
+.input { @apply w-full rounded-xl bg-white/5 border border-white/10 px-4 py-2 outline-none focus:border-pb-lilas; }
+.label { @apply text-sm text-white/70 mb-1; }
+.tag { @apply inline-flex items-center justify-center rounded-full border border-white/15 px-3 py-1 text-xs uppercase tracking-wide text-white/70; }
+
+.mui-surface { @apply bg-white/5 rounded-xl overflow-hidden border border-white/10; }
+.mui-surface .MuiDataGrid-root { color: #fff; }
+.mui-surface .MuiDataGrid-columnHeaders { background-color: rgba(255,255,255,.06); }
+.mui-surface .MuiDataGrid-cell { border-color: rgba(255,255,255,.08); }
+.mui-surface .MuiTablePagination-root { color: #fff; }
+
+.bg-dots {
+  background-image: radial-gradient(circle at 25px 25px, rgba(255,255,255,0.04) 2%, transparent 0);
+  background-size: 50px 50px;
+}
+
+.title-line {
+  position: relative;
+}
+.title-line::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -12px;
+  width: 120px;
+  height: 4px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+}
+
+.public-theme {
+  color-scheme: light;
+  --bg: #ffffff;
+  --bg-dark: #ffffff;
+  --bg-off-dark: rgba(250,251,255,0.9);
+  --text-light: #1f2937;
+  --text-muted: #4b5563;
+  --border-color: rgba(15,23,42,0.08);
+  --primary-color: #58c14e;
+  --accent-color: #6b3fa0;
+  --secondary-color: #d56aa0;
+  background-color: var(--bg);
+  color: var(--text-light);
+}
+
+.public-theme .card {
+  background-color: rgba(255,255,255,0.92);
+  color: var(--text-light);
+  border-color: rgba(15,23,42,0.08);
+  box-shadow: 0 18px 40px -24px rgba(15,23,42,0.35);
+}
+
+.public-theme .btn-ghost {
+  background-color: rgba(15,23,42,0.04);
+  color: var(--text-light);
+}
+
+.public-theme .btn-secondary {
+  border-color: rgba(15,23,42,0.12);
+  color: var(--text-light);
+  background-color: transparent;
+}
+
+.public-theme .btn-secondary:hover {
+  background-color: rgba(88,193,78,0.12);
+  border-color: rgba(88,193,78,0.4);
+  color: var(--primary-color);
+}
+
+.public-theme .btn-primary {
+  background-color: var(--primary-color);
+  color: #ffffff;
+}
+
+.public-theme .tag {
+  border-color: rgba(88,193,78,0.25);
+  color: var(--primary-color);
+  background-color: rgba(88,193,78,0.12);
+}
+
+.public-theme .bg-dots {
+  background-image: radial-gradient(circle at 25px 25px, rgba(17,24,39,0.05) 2%, transparent 0);
+}
+
+.public-theme footer {
+  background-color: rgba(15,23,42,0.05);
+}
+
+.public-theme input,
+.public-theme select,
+.public-theme textarea {
+  background-color: rgba(15,23,42,0.03);
+  border-color: rgba(15,23,42,0.1);
+  color: var(--text-light);
+}
+
+.public-theme input:focus,
+.public-theme select:focus,
+.public-theme textarea:focus {
+  border-color: rgba(91,63,160,0.5);
+  outline: none;
+}
+
+.map-popup .leaflet-popup-content-wrapper {
+  background-color: #ffffff;
+  color: #1f2937;
+  border-radius: 0.75rem;
+  box-shadow: 0 18px 40px -24px rgba(15,23,42,0.5);
+}
+
+.map-popup .leaflet-popup-tip {
+  background-color: #ffffff;
+}
