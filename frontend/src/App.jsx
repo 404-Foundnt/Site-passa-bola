@@ -22,8 +22,6 @@ const Profile = lazy(() => import("./pages/Profile.jsx"));
 const Leaderboard = lazy(() => import("./pages/Leaderboard.jsx"));
 const Player = lazy(() => import("./pages/Player.jsx"));
 const NotFound = lazy(() => import("./pages/NotFound.jsx"));
-const Notifications = lazy(() => import("./pages/Notifications.jsx"));
-const Settings = lazy(() => import("./pages/Settings.jsx"));
 
 export default function App() {
   return (
@@ -57,8 +55,6 @@ export default function App() {
           <Route path="map" element={<MapPage />} />
           <Route path="explore" element={<Explore />} />
           <Route path="profile" element={<Profile />} />
-          <Route path="notifications" element={<Notifications />} />
-          <Route path="settings" element={<Settings />} />
         </Route>
 
         <Route path="home" element={<Navigate to="/" replace />} />

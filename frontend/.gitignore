@@ -1,24 +1,23 @@
-# ----------------------------------------
-# Node / Vite build artifacts
-# ----------------------------------------
+
+---
+
+## `.gitignore`
+
+```gitignore
+# Node / Vite
 node_modules/
 dist/
 .vite/
 vite.config.timestamp-*.mjs
 
-# ----------------------------------------
 # Logs
-# ----------------------------------------
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 *.log
 
-# ----------------------------------------
-# Environment variables
-# (não subir credenciais)
-# ----------------------------------------
+
 .env
 .env.*
 !.env.example
@@ -26,42 +25,19 @@ pnpm-debug.log*
 !.env.sample
 .env.local
 
-# ----------------------------------------
-# IDE / Sistema Operacional
-# ----------------------------------------
+# Editor/OS
 .DS_Store
 Thumbs.db
 .idea/
 .vscode/
 *.swp
 
-# ----------------------------------------
-# Testes e relatórios de cobertura
-# ----------------------------------------
+# Tests/coverage
 coverage/
 *.lcov
 
-# ----------------------------------------
-# Arquivos temporários e backups
-# ----------------------------------------
-*.bak
-*.bak-*
-*.tmp
-*.temp
-*~ 
-*.orig
-
-# ----------------------------------------
-# Cache de pacotes
-# ----------------------------------------
-.pnpm-store/
-.npm/
-.yarn/
-.cache/
-
-# ----------------------------------------
-# Arquivos compactados e artefatos
-# ----------------------------------------
+# Misc
 *.zip
 *.tar
 *.tgz
+.pnpm-store/

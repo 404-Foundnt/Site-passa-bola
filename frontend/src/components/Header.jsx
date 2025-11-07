@@ -1,17 +1,19 @@
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import { Plus, User } from "lucide-react";
 import GlobalSearch from "./GlobalSearch.jsx";
 import { logout, getUser } from "../lib/auth.js";
-import links from "./navLinks";
+import MobileNav from "./MobileNav.jsx";
 
 export default function Header() {
   const user = getUser();
   const navigate = useNavigate();
 
   return (
-    <header className="sticky top-0 z-40 bg-[var(--bg-off-dark)]/90 backdrop-blur border-b border-[var(--border-color)]">
+    <header className="sticky top-0 z-40 bg-black/30 backdrop-blur border-b border-white/10">
       <div className="max-w-7xl mx-auto px-3 sm:px-4 h-14 flex items-center gap-2 sm:gap-3">
+        <MobileNav />
+
         <div className="flex-1 min-w-0 hidden sm:block">
           <GlobalSearch />
         </div>
@@ -24,7 +26,7 @@ export default function Header() {
           <DropdownMenu.Trigger asChild>
             <button
               className="btn btn-ghost rounded-full aspect-square w-10 h-10 grid place-items-center"
-              aria-label="Abrir menu do usuário"
+              aria-label="Abrir menu do usuario"
             >
               <User size={18} />
             </button>
@@ -54,28 +56,6 @@ export default function Header() {
             </DropdownMenu.Content>
           </DropdownMenu.Portal>
         </DropdownMenu.Root>
-      </div>
-
-      {/* Mobile top nav with horizontal scroll */}
-      <div className="md:hidden border-t border-[var(--border-color)] bg-[var(--bg-off-dark)]/90">
-        <nav className="max-w-7xl mx-auto px-3 py-2 overflow-x-auto">
-          <div className="flex gap-2">
-            {links.map((item) => {
-              const Icon = item.icon;
-              return (
-                <NavLink
-                  key={item.to}
-                  to={item.to}
-                  end={item.end}
-                  className={({ isActive }) => `whitespace-nowrap inline-flex items-center gap-1 px-3 py-1.5 rounded-full border ${isActive ? "bg-pb-lilas/10 border-pb-lilas/40 text-[var(--text-light)]" : "border-[var(--border-color)] text-[var(--text-muted)]"}`}
-                >
-                  <Icon size={14} />
-                  <span>{item.label}</span>
-                </NavLink>
-              );
-            })}
-          </div>
-        </nav>
       </div>
     </header>
   );

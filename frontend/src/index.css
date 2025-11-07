@@ -116,23 +116,6 @@ body {
   background-color: rgba(88,193,78,0.12);
 }
 
-/* Light overrides for MUI surface inside public-theme */
-.public-theme .mui-surface { background-color: rgba(255,255,255,0.92); border-color: rgba(15,23,42,0.08); }
-.public-theme .mui-surface .MuiDataGrid-root { color: #111827; }
-.public-theme .mui-surface .MuiDataGrid-columnHeaders { background-color: rgba(17,24,39,0.04); }
-.public-theme .mui-surface .MuiDataGrid-cell { border-color: rgba(15,23,42,0.08); }
-.public-theme .mui-surface .MuiTablePagination-root { color: #111827; }
-
-/* Map translucent white backgrounds/borders to light equivalents in app theme */
-.public-theme .bg-white\/5 { background-color: rgba(17,24,39,0.06) !important; }
-.public-theme .hover\:bg-white\/10:hover { background-color: rgba(17,24,39,0.12) !important; }
-.public-theme .border-white\/5 { border-color: rgba(15,23,42,0.08) !important; }
-.public-theme .border-white\/8 { border-color: rgba(15,23,42,0.1) !important; }
-.public-theme .border-white\/10 { border-color: rgba(15,23,42,0.12) !important; }
-.public-theme .border-white\/12 { border-color: rgba(15,23,42,0.14) !important; }
-.public-theme .border-white\/15 { border-color: rgba(15,23,42,0.16) !important; }
-.public-theme .border-white\/20 { border-color: rgba(15,23,42,0.22) !important; }
-
 .public-theme .bg-dots {
   background-image: radial-gradient(circle at 25px 25px, rgba(17,24,39,0.05) 2%, transparent 0);
 }
@@ -148,14 +131,6 @@ body {
   border-color: rgba(15,23,42,0.1);
   color: var(--text-light);
 }
-
-/* Ensure custom .input tokens are visible on light theme */
-.public-theme .input {
-  background-color: rgba(15,23,42,0.06) !important;
-  border-color: rgba(15,23,42,0.16) !important;
-  color: var(--text-light) !important;
-}
-.public-theme .input::placeholder { color: var(--text-muted); }
 
 .public-theme input:focus,
 .public-theme select:focus,
@@ -174,15 +149,3 @@ body {
 .map-popup .leaflet-popup-tip {
   background-color: #ffffff;
 }
-
-/* Map common white text utilities to light tokens when on light theme */
-.public-theme .text-white { color: var(--text-light) !important; }
-.public-theme .text-white\/95,
-.public-theme .text-white\/90,
-.public-theme .text-white\/85,
-.public-theme .text-white\/80 { color: var(--text-light) !important; }
-.public-theme .text-white\/70,
-.public-theme .text-white\/60,
-.public-theme .text-white\/50,
-.public-theme .text-white\/40,
-.public-theme .text-white\/30 { color: var(--text-muted) !important; }
