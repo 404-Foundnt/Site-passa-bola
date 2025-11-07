@@ -1,7 +1,49 @@
 import * as Dialog from "@radix-ui/react-dialog";
-import { useState } from "react";
-export default function PresenceDialog({ trigger, match, onConfirm }){
+import { useEffect, useState } from "react";
+
+const STORAGE_PREFIX = "match-presence:";
+
+const getKey = (match) => (match?.id ? `${STORAGE_PREFIX}${match.id}` : null);
+
+const loadStatus = (match) => {
+  if (typeof window === "undefined") return null;
+  const key = getKey(match);
+  if (!key) return null;
+  try {
+    return localStorage.getItem(key);
+  } catch (error) {
+    console.warn("Falha ao ler status salvo", error);
+    return null;
+  }
+};
+
+const persistStatus = (match, status) => {
+  if (typeof window === "undefined") return;
+  const key = getKey(match);
+  if (!key) return;
+  try {
+    localStorage.setItem(key, status);
+  } catch (error) {
+    console.warn("Falha ao salvar status de presença", error);
+  }
+};
+
+export default function PresenceDialog({ trigger, match, onConfirm }) {
   const [status, setStatus] = useState("yes");
+
+  useEffect(() => {
+    const stored = loadStatus(match);
+    if (stored) {
+      setStatus(stored);
+    } else {
+      setStatus("yes");
+    }
+  }, [match?.id]);
+
+  const handleConfirm = () => {
+    persistStatus(match, status);
+    onConfirm?.(status, match);
+  };
   return (
     <Dialog.Root>
       <Dialog.Trigger asChild>{trigger}</Dialog.Trigger>
@@ -22,7 +64,7 @@ export default function PresenceDialog({ trigger, match, onConfirm }){
             <div className="mt-4 flex justify-end gap-2">
               <Dialog.Close className="btn btn-ghost">Cancelar</Dialog.Close>
               <Dialog.Close asChild>
-                <button className="btn btn-primary" onClick={()=>onConfirm?.(status)}>Salvar</button>
+                <button className="btn btn-primary" onClick={handleConfirm}>Salvar</button>
               </Dialog.Close>
             </div>
           </div>

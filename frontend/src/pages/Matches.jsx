@@ -1,5 +1,5 @@
-﻿import { useMemo, useState } from "react";
-import { useQuery } from "@tanstack/react-query";
+import { useCallback, useMemo, useState } from "react";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { fetchMatches } from "../lib/api";
 import { DataGrid } from "@mui/x-data-grid";
 import { Box, TextField } from "@mui/material";
@@ -20,7 +20,7 @@ const presenceFeedback = (status) => {
   }
 };
 
-const PresenceButton = ({ match, variant = "ghost" }) => (
+const PresenceButton = ({ match, variant = "ghost", onConfirm }) => (
   <PresenceDialog
     match={match}
     trigger={
@@ -30,15 +30,12 @@ const PresenceButton = ({ match, variant = "ghost" }) => (
         Marcar
       </button>
     }
-    onConfirm={presenceFeedback}
+    onConfirm={onConfirm}
   />
 );
 
-function PresenceCell({ row }) {
-  return <PresenceButton match={row.__raw} />;
-}
 
-const columns = [
+const createColumns = (onConfirm) => [
   { field: "date", headerName: "Data", width: 140, valueGetter: (_, row) => row.date },
   { field: "time", headerName: "Hora", width: 100, valueGetter: (_, row) => row.time },
   { field: "home", headerName: "Casa", flex: 1, minWidth: 140 },
@@ -50,11 +47,11 @@ const columns = [
     width: 130,
     sortable: false,
     filterable: false,
-    renderCell: (params) => <PresenceCell row={params.row} />
+    renderCell: (params) => <PresenceButton match={params.row.__raw} onConfirm={onConfirm} />
   }
 ];
 
-const MobileMatchCard = ({ match }) => (
+const MobileMatchCard = ({ match, onConfirm }) => (
   <div className="rounded-2xl border border-white/10 bg-black/30 p-4 space-y-3">
     <div className="flex items-center justify-between text-xs uppercase tracking-wide text-white/60">
       <span>{match.date}</span>
@@ -67,16 +64,28 @@ const MobileMatchCard = ({ match }) => (
     <div className="text-sm text-white/70">
       <span className="font-medium text-white">Local:</span> {match.venue}
     </div>
-    <PresenceButton match={match.__raw} variant="primary" />
+    <PresenceButton match={match.__raw} variant="primary" onConfirm={onConfirm} />
   </div>
 );
 
 export default function Matches() {
   const { data = [], isLoading } = useQuery({ queryKey: ["matches"], queryFn: fetchMatches });
+  const queryClient = useQueryClient();
   const [team, setTeam] = useState("");
   const [venue, setVenue] = useState("");
   const [from, setFrom] = useState(null);
   const [to, setTo] = useState(null);
+
+  const handlePresence = useCallback(
+    (status) => {
+      presenceFeedback(status);
+      queryClient.invalidateQueries({ queryKey: ["matches"] });
+    },
+    [queryClient]
+  );
+
+  const columns = useMemo(() => createColumns(handlePresence), [handlePresence]);
+
 
   const teams = useMemo(() => {
     const set = new Set();
@@ -187,10 +196,16 @@ export default function Matches() {
         <div className="md:hidden space-y-3">
           {rows.length === 0 && <div className="text-white/60 text-sm">Nenhuma partida para os filtros atuais.</div>}
           {rows.map((match) => (
-            <MobileMatchCard key={match.id} match={match} />
+            <MobileMatchCard key={match.id} match={match} onConfirm={handlePresence} />
           ))}
         </div>
       </div>
     </div>
   );
 }
+
+
+
+
+
+

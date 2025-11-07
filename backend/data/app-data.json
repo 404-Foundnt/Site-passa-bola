@@ -1,0 +1,285 @@
+{
+  "dashboard": {
+    "nextMatch": {
+      "id": 99,
+      "home": "Passa a Bola",
+      "away": "Atlético Brisa",
+      "opponent": "Atlético Brisa",
+      "dateISO": "2025-09-20T18:30:00-03:00",
+      "venue": "Arena Aurora",
+      "lat": -23.5445,
+      "lng": -46.3111
+    },
+    "stats": [
+      { "id": "xp", "label": "XP semanal", "value": 1420, "diff": "+21%" },
+      { "id": "minutes", "label": "Minutos jogados", "value": 312, "diff": "+8%" },
+      { "id": "goals", "label": "Gols", "value": 9, "diff": "+3" },
+      { "id": "streak", "label": "Séries ativas", "value": 5, "diff": "+1" }
+    ]
+  },
+  "ticker": [
+    { "home": "Aurora", "away": "Quilombo", "score": "2-1", "minute": 73 },
+    { "home": "Brisa", "away": "Leoas", "score": "0-0", "minute": 38 },
+    { "home": "União Serra", "away": "Horizonte", "score": "1-0", "minute": 90 }
+  ],
+  "badges": [
+    { "id": "cap", "label": "Capitã assídua", "desc": "Confirmou presença 8x seguidas", "owned": true },
+    { "id": "fair", "label": "Fair-play", "desc": "0 faltas em 5 jogos", "owned": true },
+    { "id": "hat", "label": "Hat-trick", "desc": "3 gols em um jogo", "owned": false },
+    { "id": "clean", "label": "Clean sheet", "desc": "Sem sofrer gols", "owned": false }
+  ],
+  "team": {
+    "id": "passa-a-bola",
+    "name": "Passa a Bola",
+    "roster": [
+      { "id": "isabela-monteiro", "name": "Isabela Monteiro", "position": "MEI" },
+      { "id": "lara-santana", "name": "Lara Santana", "position": "ATA" },
+      { "id": "marina-figueiredo", "name": "Marina Figueiredo", "position": "ZAG" },
+      { "id": "sofia-baltar", "name": "Sofia Baltar", "position": "GOL" },
+      { "id": "nina-oliveira", "name": "Nina Oliveira", "position": "MEI" }
+    ],
+    "availability": [
+      { "id": "isabela-monteiro", "name": "Isabela Monteiro", "status": "Vou" },
+      { "id": "lara-santana", "name": "Lara Santana", "status": "Talvez" },
+      { "id": "marina-figueiredo", "name": "Marina Figueiredo", "status": "Vou" },
+      { "id": "sofia-baltar", "name": "Sofia Baltar", "status": "Não vou" },
+      { "id": "nina-oliveira", "name": "Nina Oliveira", "status": "Chegando" }
+    ]
+  },
+  "matches": [
+    {
+      "id": 1,
+      "dateISO": "2025-09-21T14:00:00-03:00",
+      "home": "Passa a Bola",
+      "away": "Atlético Brisa",
+      "venue": "Arena Aurora",
+      "lat": -23.5445,
+      "lng": -46.3111
+    },
+    {
+      "id": 2,
+      "dateISO": "2025-09-22T19:30:00-03:00",
+      "home": "Clube Aurora",
+      "away": "União Serra",
+      "venue": "Centro Olímpico",
+      "lat": -23.52,
+      "lng": -46.36
+    },
+    {
+      "id": 3,
+      "dateISO": "2025-09-25T09:45:00-03:00",
+      "home": "Rio Negro",
+      "away": "Quilombo",
+      "venue": "Parque Linear",
+      "lat": -23.57,
+      "lng": -46.29
+    }
+  ],
+  "leaderboard": [
+    { "id": "lara-santana", "pos": 1, "name": "Lara Santana", "team": "Atlético Brisa", "xp": 1640 },
+    { "id": "isabela-monteiro", "pos": 2, "name": "Isabela Monteiro", "team": "Clube Aurora", "xp": 1580 },
+    { "id": "sofia-baltar", "pos": 3, "name": "Sofia Baltar", "team": "União Serra", "xp": 1495 },
+    { "id": "marina-figueiredo", "pos": 4, "name": "Marina Figueiredo", "team": "Rio Negro", "xp": 1430 },
+    { "id": "nina-oliveira", "pos": 5, "name": "Nina Oliveira", "team": "Leoas", "xp": 1310 }
+  ],
+  "teams": [
+    { "id": "passa-a-bola", "name": "Passa a Bola", "city": "São Paulo/SP", "players": 24 },
+    { "id": "aurora", "name": "Clube Aurora", "city": "Campinas/SP", "players": 19 },
+    { "id": "brisa", "name": "Atlético Brisa", "city": "Santos/SP", "players": 21 },
+    { "id": "serra", "name": "União Serra", "city": "Caxias do Sul/RS", "players": 22 },
+    { "id": "rio-negro", "name": "Rio Negro", "city": "Manaus/AM", "players": 20 }
+  ],
+  "publicContent": {
+    "home": {
+      "sponsors": [
+        { "src": "https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg", "alt": "Google" },
+        { "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/YouTube_2024.svg/300px-YouTube_2024.svg.png", "alt": "YouTube" },
+        { "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Adidas_2022_logo.svg/300px-Adidas_2022_logo.svg.png", "alt": "Adidas" },
+        { "src": "https://upload.wikimedia.org/wikipedia/en/thumb/d/da/Puma_complete_logo.svg/300px-Puma_complete_logo.svg.png", "alt": "Puma" },
+        { "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/PlayStation_logo_and_wordmark.svg/300px-PlayStation_logo_and_wordmark.svg.png", "alt": "PlayStation" }
+      ],
+      "heroLinks": [
+        {
+          "title": "Boletim diário",
+          "description": "Resumos com dados, vídeos e estatísticas da rodada.",
+          "href": "/news",
+          "imageKey": "programAnalytics"
+        },
+        {
+          "title": "Agenda de torneios",
+          "description": "Partidas confirmadas, arbitragem e streams ao vivo.",
+          "href": "/tournaments#agenda",
+          "imageKey": "programCelebration"
+        },
+        {
+          "title": "Guia de quadras",
+          "description": "Mapeamos arenas acessíveis para treinos e amistosos.",
+          "href": "/#quadras",
+          "imageKey": "programWorkshop"
+        }
+      ],
+      "programs": [
+        {
+          "title": "Circuito Passa a Bola",
+          "description": "Etapas regionais com tabelas atualizadas e suporte de arbitragem feminina.",
+          "imageKey": "programCelebration",
+          "href": "/tournaments"
+        },
+        {
+          "title": "Academia de Base",
+          "description": "Clínicas trimestrais, avaliação técnica e preparação física integrada.",
+          "imageKey": "programConditioning",
+          "href": "/#base"
+        },
+        {
+          "title": "Laboratório de Conteúdo",
+          "description": "Produção audiovisual, storytelling e dados para ampliar a visibilidade das atletas.",
+          "imageKey": "programAnalytics",
+          "href": "/news"
+        },
+        {
+          "title": "Rede de Impacto",
+          "description": "Clubes, escolas e patrocinadores conectados para investir no futebol feminino.",
+          "imageKey": "programWorkshop",
+          "href": "/#parcerias"
+        }
+      ],
+      "newsHighlights": [
+        {
+          "title": "Passa a Bola confirma centro de treinamento ecológico",
+          "description": "Novo CT em São Paulo reduz consumo de água em 40% e abre 200 vagas para a base.",
+          "imageKey": "heroArena",
+          "tag": "institucional",
+          "href": "/news?tag=institucional"
+        },
+        {
+          "title": "Festival Sub-17 toma conta do litoral",
+          "description": "Doze projetos comunitários apresentam suas atletas para observadoras da seleção.",
+          "imageKey": "programCelebration",
+          "tag": "base",
+          "href": "/news?tag=base"
+        },
+        {
+          "title": "Amistoso solidário arrecada 3 toneladas",
+          "description": "Equipe Aurora recebe a comunidade com oficinas de liderança e roda de conversa.",
+          "imageKey": "programWorkshop",
+          "tag": "comunidade",
+          "href": "/news?tag=comunidade"
+        }
+      ],
+      "courtGuides": [
+        {
+          "city": "São Paulo",
+          "name": "Arena Aurora",
+          "feature": "Gramado sintético, vestiários completos e iluminação LED.",
+          "imageKey": "heroArena"
+        },
+        {
+          "city": "Belo Horizonte",
+          "name": "Centro Pampulha",
+          "feature": "Quadra coberta, lounge para staff e transmissão via fibra.",
+          "imageKey": "programAnalytics"
+        },
+        {
+          "city": "Recife",
+          "name": "Complexo Ilha do Sol",
+          "feature": "Área climatizada, academia parceira e transporte dedicado.",
+          "imageKey": "programWorkshop"
+        }
+      ],
+      "values": [
+        { "title": "Acesso", "description": "Baixa barreira de entrada, bolsas e logística inclusiva." },
+        { "title": "Segurança", "description": "Protocolos claros, suporte psicológico e rede de proteção." },
+        { "title": "Visibilidade", "description": "Produção audiovisual e scouting compartilhado." }
+      ],
+      "founders": [
+        { "name": "Clara Vilela", "role": "Co-fundadora", "imageKey": "clara" },
+        { "name": "Helena Magalhães", "role": "Diretora esportiva", "imageKey": "helena" }
+      ]
+    },
+    "tournaments": {
+      "filters": [
+        { "label": "Todos", "tag": null },
+        { "label": "Amistosos", "tag": "amistosos" },
+        { "label": "Categorias de base", "tag": "base" },
+        { "label": "Copas & ligas", "tag": "copas" }
+      ],
+      "featured": {
+        "title": "Copa Primavera 2025",
+        "stage": "Fase de grupos – Rodada 3",
+        "bannerKey": "heroArena",
+        "scoreboard": [
+          { "team": "Passa a Bola", "score": 2 },
+          { "team": "União Serra", "score": 1 }
+        ],
+        "stats": [
+          { "label": "Onde", "value": "Arena Aurora – São Paulo" },
+          { "label": "Transmissão", "value": "YouTube / Passa a Bola TV" },
+          { "label": "Ingresso", "value": "1 kg de alimento ou R$ 10" }
+        ]
+      },
+      "session": [
+        {
+          "day": "Sex – 20/09",
+          "title": "Workshop de liderança feminina",
+          "location": "Hub Passa a Bola, São Paulo",
+          "tag": "base"
+        },
+        {
+          "day": "Sáb – 21/09",
+          "title": "Quartas de final – Circuito Passa a Bola",
+          "location": "Arena Aurora",
+          "tag": "copas"
+        },
+        {
+          "day": "Dom – 22/09",
+          "title": "Amistoso solidário – Passa a Bola x Quilombo",
+          "location": "Parque Linear",
+          "tag": "amistosos"
+        }
+      ],
+      "tournaments": [
+        {
+          "id": 1,
+          "tag": "amistosos",
+          "title": "Amistoso beneficente – Arena Municipal",
+          "summary": "Ingresso solidário com renda revertida aos programas de base.",
+          "when": "Sáb – 16:00",
+          "where": "São Paulo – Zona Oeste",
+          "imageKey": "programCelebration",
+          "href": "/news?tag=amistosos"
+        },
+        {
+          "id": 2,
+          "tag": "base",
+          "title": "Festival Sub-17 – Observadoras confirmadas",
+          "summary": "Rodízio de atletas, relatórios técnicos e mesas com universidades parceiras.",
+          "when": "Dom – 09:00-13:00",
+          "where": "Rio de Janeiro – Barra",
+          "imageKey": "programConditioning",
+          "href": "/news?tag=base"
+        },
+        {
+          "id": 3,
+          "tag": "copas",
+          "title": "Copa Primavera – Inscrições abertas",
+          "summary": "Categorias Livre e Sub-20, vagas limitadas para 24 equipes.",
+          "when": "Inscrição até 30/04",
+          "where": "Formato híbrido",
+          "imageKey": "programAnalytics",
+          "href": "/tournaments"
+        },
+        {
+          "id": 4,
+          "tag": "amistosos",
+          "title": "Jogo das Minas – Edição especial",
+          "summary": "Integração entre projetos parceiros, painel de inovação e roda de conversa.",
+          "when": "Qua – 20:00",
+          "where": "Belo Horizonte – Pampulha",
+          "imageKey": "programWorkshop",
+          "href": "/news?tag=amistosos"
+        }
+      ]
+    }
+  }
+}

@@ -1,7 +1,8 @@
 import { useEffect, useMemo, useState } from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import Combobox from "../components/Combobox";
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import { toast } from "sonner";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import iconUrl from "leaflet/dist/images/marker-icon.png?url";
@@ -15,6 +16,7 @@ const VENUES = [
   { id:"parque-linear", name:"Parque Linear", lat:-23.57, lng:-46.29 },
 ];
 export default function Explore(){
+  const navigate = useNavigate();
   const [params] = useSearchParams();
   const initial = params.get("venue");
   const [venue, setVenue] = useState(initial || "arena-suzano");
@@ -28,7 +30,7 @@ export default function Explore(){
         <div className="grid md:grid-cols-3 gap-3 mt-3">
           <div>
             <div className="label">Local</div>
-            <Combobox options={options} value={venue} onChange={setVenue} placeholder="Selecione o local…" searchPlaceholder="Buscar local…" />
+            <Combobox label="Local" options={options} value={venue} onChange={setVenue} placeholder="Selecione o local…" searchPlaceholder="Buscar local…" />
           </div>
           <div className="md:col-span-2">
             <div className="text-sm text-white/60">Sugestão</div>
@@ -46,7 +48,15 @@ export default function Explore(){
             </Marker>
           </MapContainer>
         </div>
-        <button className="btn btn-primary mt-3" onClick={()=>alert(`(UI) Local definido: ${current.name}`)}>Usar este local</button>
+        <button
+          className="btn btn-primary mt-3"
+          onClick={()=>{
+            toast.success(`Local definido: ${current.name}`);
+            navigate(`/app/create-match?venue=${current.id}`);
+          }}
+        >
+          Usar este local
+        </button>
       </div>
     </div>
   );

@@ -82,7 +82,7 @@ export default function GlobalSearch() {
   }
 
   return (
-    <Combobox
+    <Combobox label="Busca global"
       options={options}
       value={value}
       onChange={handleChange}

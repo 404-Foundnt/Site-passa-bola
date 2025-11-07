@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react";
+import { getAppData } from "../../lib/localData.js";
 import logo from "../../assets/branding/passabola.png";
 import clara from "../../assets/founders/clara-vilela.jpg";
 import helena from "../../assets/founders/helena-magalhaes.jpg";
@@ -7,119 +9,62 @@ import programWorkshop from "../../assets/public/program-workshop.jpg";
 import programCelebration from "../../assets/public/program-celebration.jpg";
 import programAnalytics from "../../assets/public/program-analytics.jpg";
 
-const sponsors = [
-  { src: "https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg", alt: "Google" },
-  { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/YouTube_2024.svg/300px-YouTube_2024.svg.png", alt: "YouTube" },
-  { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Adidas_2022_logo.svg/300px-Adidas_2022_logo.svg.png", alt: "Adidas" },
-  { src: "https://upload.wikimedia.org/wikipedia/en/thumb/d/da/Puma_complete_logo.svg/300px-Puma_complete_logo.svg.png", alt: "Puma" },
-  { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/PlayStation_logo_and_wordmark.svg/300px-PlayStation_logo_and_wordmark.svg.png", alt: "PlayStation" }
-];
+const imageMap = {
+  heroArena,
+  programConditioning,
+  programWorkshop,
+  programCelebration,
+  programAnalytics,
+  clara,
+  helena
+};
 
-const heroLinks = [
-  {
-    title: "Boletim diário",
-    description: "Resumos com dados, vídeos e estatísticas da rodada.",
-    href: "/news",
-    image: programAnalytics,
-  },
-  {
-    title: "Agenda de torneios",
-    description: "Partidas confirmadas, arbitragem e streams ao vivo.",
-    href: "/tournaments#agenda",
-    image: programCelebration,
-  },
-  {
-    title: "Guia de quadras",
-    description: "Mapeamos arenas acessíveis para treinos e amistosos.",
-    href: "/#quadras",
-    image: programWorkshop,
-  },
-];
+const resolveImage = (key) => (key && imageMap[key]) || key;
 
-const programs = [
-  {
-    title: "Circuito Passa a Bola",
-    description: "Etapas regionais com tabelas atualizadas e suporte de arbitragem feminina.",
-    image: programCelebration,
-    href: "/tournaments",
-  },
-  {
-    title: "Academia de Base",
-    description: "Clínicas trimestrais, avaliação técnica e preparação física integrada.",
-    image: programConditioning,
-    href: "/#base",
-  },
-  {
-    title: "Laboratório de Conteúdo",
-    description: "Produção audiovisual, storytelling e dados para ampliar a visibilidade das atletas.",
-    image: programAnalytics,
-    href: "/news",
-  },
-  {
-    title: "Rede de Impacto",
-    description: "Clubes, escolas e patrocinadores conectados para investir no futebol feminino.",
-    image: programWorkshop,
-    href: "/#parcerias",
-  },
-];
-
-const newsHighlights = [
-  {
-    title: "Passa a Bola confirma centro de treinamento ecológico",
-    description: "Novo CT em São Paulo reduz consumo de água em 40% e abre 200 vagas para a base.",
-    image: heroArena,
-    tag: "institucional",
-    href: "/news?tag=institucional",
-  },
-  {
-    title: "Festival Sub-17 toma conta do litoral",
-    description: "Doze projetos comunitários apresentam suas atletas para observadoras da seleção.",
-    image: programCelebration,
-    tag: "base",
-    href: "/news?tag=base",
-  },
-  {
-    title: "Amistoso solidário arrecada 3 toneladas",
-    description: "Equipe Aurora recebe a comunidade com oficinas de liderança e roda de conversa.",
-    image: programWorkshop,
-    tag: "comunidade",
-    href: "/news?tag=comunidade",
-  },
-];
-
-const courtGuides = [
-  {
-    city: "São Paulo",
-    name: "Arena Aurora",
-    feature: "Gramado sintético, vestiários completos e iluminação LED.",
-    image: heroArena,
-  },
-  {
-    city: "Belo Horizonte",
-    name: "Centro Pampulha",
-    feature: "Quadra coberta, lounge para staff e transmissão via fibra.",
-    image: programAnalytics,
-  },
-  {
-    city: "Recife",
-    name: "Complexo Ilha do Sol",
-    feature: "Área climatizada, academia parceira e transporte dedicado.",
-    image: programWorkshop,
-  },
-];
-
-const values = [
-  { title: "Acesso", description: "Baixa barreira de entrada, bolsas e logística inclusiva." },
-  { title: "Segurança", description: "Protocolos claros, suporte psicológico e rede de proteção." },
-  { title: "Visibilidade", description: "Produção audiovisual e scouting compartilhado." },
-];
-
-const founders = [
-  { name: "Clara Vilela", role: "Co-fundadora", img: clara },
-  { name: "Helena Magalhães", role: "Diretora esportiva", img: helena },
-];
 
 export default function Home() {
+  const [content, setContent] = useState(null);
+
+  useEffect(() => {
+    let active = true;
+
+    getAppData()
+      .then((data) => {
+        if (!active) return;
+        setContent(data.publicContent?.home ?? null);
+      })
+      .catch((error) => {
+        console.error("Falha ao carregar conteúdo público", error);
+      });
+
+    return () => {
+      active = false;
+    };
+  }, []);
+
+  const sponsors = content?.sponsors ?? [];
+  const heroLinks = (content?.heroLinks ?? []).map((item) => ({
+    ...item,
+    image: resolveImage(item.imageKey ?? item.image)
+  }));
+  const programs = (content?.programs ?? []).map((item) => ({
+    ...item,
+    image: resolveImage(item.imageKey ?? item.image)
+  }));
+  const newsHighlights = (content?.newsHighlights ?? []).map((item) => ({
+    ...item,
+    image: resolveImage(item.imageKey ?? item.image)
+  }));
+  const courtGuides = (content?.courtGuides ?? []).map((item) => ({
+    ...item,
+    image: resolveImage(item.imageKey ?? item.image)
+  }));
+  const values = content?.values ?? [];
+  const founders = (content?.founders ?? []).map((item) => ({
+    ...item,
+    img: resolveImage(item.imageKey ?? item.img)
+  }));
+
   return (
     <>
       <section className="relative min-h-[80vh] flex items-end pb-16">

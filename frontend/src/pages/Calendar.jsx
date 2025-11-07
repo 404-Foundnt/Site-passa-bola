@@ -4,6 +4,7 @@ import { fetchMatches } from "../lib/api";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
+import { toast } from "sonner";
 export default function CalendarPage(){
   const { data=[], isLoading } = useQuery({ queryKey:["matches"], queryFn: fetchMatches });
   const events = useMemo(()=> data.map(m => ({ id:String(m.id), title:`${m.home} vs ${m.away}`, start:m.dateISO })), [data]);
@@ -15,9 +16,10 @@ export default function CalendarPage(){
         <FullCalendar plugins={[dayGridPlugin, interactionPlugin]} initialView="dayGridMonth"
           events={events} height="auto"
           headerToolbar={{ left:"prev,next today", center:"title", right:"dayGridMonth,dayGridWeek" }}
-          dateClick={(info)=>alert(`Dia: ${new Date(info.dateStr).toLocaleDateString("pt-BR")}`)}
-          eventClick={(info)=>alert(`Jogo: ${info.event.title}`)} />
+          dateClick={(info)=>toast.success(`Dia selecionado: ${new Date(info.dateStr).toLocaleDateString("pt-BR")}`)}
+          eventClick={(info)=>{info.jsEvent?.preventDefault(); toast.success(`Jogo: ${info.event.title}`);}} />
       </div>
     </div>
   );
 }
+

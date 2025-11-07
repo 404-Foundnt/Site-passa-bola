@@ -53,7 +53,7 @@ export default function Team() {
         <div className="grid md:grid-cols-3 gap-3 mt-4">
           <div>
             <div className="label">Filtrar jogadora</div>
-            <Combobox
+            <Combobox label="Jogadora"
               options={playerOptions}
               value={player}
               onChange={setPlayer}

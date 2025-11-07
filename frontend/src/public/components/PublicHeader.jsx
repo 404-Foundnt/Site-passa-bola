@@ -22,7 +22,9 @@ export default function PublicHeader() {
         </button>
 
         <div className="hidden md:block flex-1 max-w-[520px]">
+          <label className="sr-only" htmlFor="public-header-search">Buscar no site</label>
           <input
+            id="public-header-search"
             type="search"
             placeholder="Buscar torneios, notícias…"
             className="w-full h-10 rounded-full border border-[var(--border-color)] bg-transparent px-4 outline-none focus:ring-2 focus:ring-[var(--primary-color)]/30 transition-colors focus:border-[var(--primary-color)]"
@@ -58,7 +60,9 @@ export default function PublicHeader() {
         <div id="public-mobile-nav" className="md:hidden border-t border-[var(--border-color)]">
           <div className="container mx-auto px-4 py-3 space-y-3">
             <div>
+              <label className="sr-only" htmlFor="public-header-search-mobile">Buscar no site</label>
               <input
+                id="public-header-search-mobile"
                 type="search"
                 placeholder="Buscar torneios, notícias…"
                 className="w-full h-10 rounded-full border border-[var(--border-color)] bg-transparent px-4 outline-none focus:ring-2 focus:ring-[var(--primary-color)]/30 transition-colors focus:border-[var(--primary-color)]"

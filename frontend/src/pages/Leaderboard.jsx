@@ -68,7 +68,7 @@ export default function Leaderboard() {
               disableRowSelectionOnClick
               onRowClick={(params) => {
                 const playerId = params.row.id || slugify(params.row.name);
-                window.location.href = `/app/player/${playerId}`;
+                navigate(`/app/player/${playerId}`);
               }}
               sx={{
                 bgcolor: "rgba(255,255,255,.05)",

@@ -1,10 +1,13 @@
 import * as Popover from "@radix-ui/react-popover";
-import { useMemo, useRef, useState, useEffect } from "react";
+import { useMemo, useRef, useState, useEffect, useId } from "react";
 
 export default function Combobox({ options = [], value, onChange, placeholder = "Selecionar…", searchPlaceholder = "Buscar…" }) {
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
   const inputRef = useRef(null);
+  const triggerId = useId();
+  const labelId = `${triggerId}-label`;
+  const labelText = label || placeholder;
 
   const filtered = useMemo(() => {
     const term = query.trim().toLowerCase();
@@ -21,8 +24,13 @@ export default function Combobox({ options = [], value, onChange, placeholder = 
 
   return (
     <Popover.Root open={open} onOpenChange={setOpen}>
+      <label id={labelId} className="sr-only" htmlFor={triggerId}>
+        {labelText}
+      </label>
       <Popover.Trigger asChild>
         <button
+          id={triggerId}
+          aria-labelledby={labelId}
           type="button"
           className="input flex items-center justify-between gap-2"
           aria-haspopup="listbox"
@@ -68,3 +76,6 @@ export default function Combobox({ options = [], value, onChange, placeholder = 
     </Popover.Root>
   );
 }
+
+
+

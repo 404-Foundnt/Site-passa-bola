@@ -1,150 +1,68 @@
-# Passa a Bola — Frontend v4
+﻿# Passa a Bola – Frontend
 
-UI/UX moderna para o Passa a Bola com **React + Vite + Tailwind CSS v4**, **Radix UI** (acessibilidade top), **MUI** (DataGrid/DatePickers onde faz sentido), **Leaflet** (mapa), **React Query**, **Framer Motion** e integração opcional com **Supabase** (auth/storage).
+SPA construída com **React + Vite** para o dashboard "Passa a Bola". A interface consome os dados da API local (pasta `backend/`), demonstra manipulação de DOM/estado (dialogs, toasts, invalidações do React Query) e segue boas práticas de acessibilidade (Radix UI + labels sr-only).
 
-> **Tailwind v4**: não existe `tailwind.config.js`. Os tokens ficam em `src/index.css` com `@theme` e o plugin é `@tailwindcss/vite`.
+## Stack
+- React 18, Vite 5
+- Tailwind CSS v4 (tokens em `src/index.css` via `@theme`)
+- Radix UI (Dialog, Dropdown, Popover)
+- MUI DataGrid / Date Pickers
+- Leaflet (mapas) + React Leaflet
+- @tanstack/react-query
+- Framer Motion, Dayjs, Sonner (toasts)
 
----
+## Requisitos
+- Node.js 18+ (20 recomendado)
+- API local rodando em `backend/` (Express + JSON local)
 
-## 📦 Stack
-- **React 18**, **Vite 5**
-- **Tailwind CSS v4** + utilitários “na unha” (`.card`, `.btn`, `.mui-surface`…)
-- **Radix UI** (Dialog/Dropdown/Tabs/Combobox)
-- **MUI**: `@mui/x-data-grid` e `@mui/x-date-pickers` (apenas onde agrega)
-- **Leaflet** para mapas
-- **@tanstack/react-query** para dados
-- **Framer Motion** (animações leves)
-- **Dayjs** (datas)
-- **Supabase** (opcional): Storage (avatars) e, em seguida, Auth/DB
+## Como rodar
+1. **API**
+   ```bash
+   cd backend
+   npm install
+   npm run dev # http://localhost:5050
+   ```
 
----
+2. **Frontend**
+   ```bash
+   cd frontend
+   npm install
+   echo VITE_API_URL=http://localhost:5050 > .env.local  # Windows: use type/Set-Content
+   npm run dev # http://localhost:5173
+   ```
 
-## 🚀 Início rápido
+Para build/preview: `npm run build` e `npm run preview`.
 
-```bash
-# Node 18+ (recomendado 20+). Seu Node: v22 já serve.
-npm i
-npm run dev
-Abra o endereço que o Vite imprimir (geralmente http://localhost:5173/).
+## Estrutura principal
+```
+frontend/
+  src/
+    components/        # Layout, Combobox, PresenceDialog, etc.
+    pages/             # Dashboard, Matches, Teams, Public pages...
+    public/            # Landing/Home/Tournaments (via PublicLayout)
+    lib/
+      api.js          # Funções usadas pelo React Query (buscam a API local)
+      localData.js     # Cache do fetch `${VITE_API_URL}/api/data`
+      auth.js, supabase.js
+```
 
-Login local (mock): acesse /login, digite qualquer e-mail/senha e entre.
+## Fluxo de dados
+- `backend/server.js` expõe `/api/data` (JSON completo) e endpoints derivados.
+- `src/lib/localData.js` busca esse JSON uma vez e compartilha via cache (resetável).
+- `src/lib/api.js` divide as fatias (dashboard, matches, leaderboards, etc.) e injeta em `useQuery`.
+- Páginas públicas (`Home`, `Tournaments`) também usam o hook para mostrar hero cards, programas e filtros sem arrays estáticos.
 
-🔧 Variáveis de ambiente (Supabase opcional)
+## Destaques de interação/DOM
+- `PresenceDialog`: salva presença no `localStorage`, dispara toasts e invalida `['matches']` para atualizar DataGrid/cards imediatamente.
+- `CreateMatch`, `Calendar`, `Explore`: substituíram `alert` por toasts + `useNavigate`, mantendo SPA.
+- Combobox tem `label` sr-only + `aria-labelledby`, e os inputs públicos ganharam `<label class="sr-only">` para cumprir W3C.
 
-Crie um arquivo .env.local na raiz:
-VITE_SUPABASE_URL=https://SEU-PROJETO.supabase.co
-VITE_SUPABASE_ANON_KEY=chave-anon
+## Rotas úteis
+- `/` público (Home, Tournaments, News)
+- `/login`, `/register` (mock)
+- `/app` + subrotas (Dashboard, Leaderboard, Matches, Teams, Player, Create Match, Calendar, Explore)
 
-Se não preencher, tudo roda com mocks.
+## Contribuição
+- Uma branch por feature.
+- Descrever no PR o que mudou e incluir passos de QA manual.
 
-🧭 Rotas principais
-
-/login, /register (mock local por enquanto)
-
-/app → layout autenticado
-
-/app/dashboard
-
-/app/leaderboard (DataGrid + PT-BR + estilos dark)
-
-/app/matches (DataGrid, filtros, “Marcar presença” com Dialog Radix)
-
-/app/teams e /app/team/:id
-
-/app/player/:id ← ficha da jogadora (overall com gradiente 💚→💜, radar hexagonal, mini-campo heatmap, tabs)
-
-/app/create-match
-
-/app/calendar, /app/map
-
-/app/explore (Combobox + Leaflet, “Explorar quadras”)
-
-A Busca Global (Combobox no Header) navega para times, jogadoras, locais e páginas.
-
-🗂️ Estrutura rápida
-
-src/
-  components/
-    AppLayout.jsx
-    Header.jsx
-    Combobox.jsx
-    GlobalSearch.jsx
-    RadarHex.jsx        # hexágono reativo (SVG)
-    MiniPitch.jsx       # mini-campo com heatmap (SVG)
-  lib/
-    api.js             # mocks dos dados (rápidos)
-    auth.js            # login/logout localStorage (mock)
-    supabase.js        # createClient + getAvatarUrl()
-  pages/
-    Player.jsx         # ficha da jogadora (tabs/gradiente/radar/heatmap)
-    Leaderboard.jsx    # DataGrid estilizado
-    Matches.jsx, Teams.jsx, Team.jsx, ...
-  routes/
-    ProtectedRoute.jsx
-  index.css            # Tailwind v4 + tokens + utilitários + fixes MUI
-  main.jsx, App.jsx
-
-🎨 Design System (util classes)
-
-.card → container com bg escuro, borda sutil e blur.
-
-.btn, .btn-primary, .btn-ghost
-
-.input, .label
-
-.mui-surface → wrapper para MUI DataGrid com contraste correto no tema escuro.
-
-Tokens em @theme (--color-pb-lilas, --color-pb-verde etc).
-
-🖼️ Avatares (Supabase Storage)
-
-No Supabase, crie bucket avatars (público).
-
-Suba luana.jpg, rafa.jpg, ale.jpg etc (mesmo id da rota /app/player/:id).
-
-O getAvatarUrl(playerId) monta a URL pública e a Player.jsx mostra a imagem.
-
-Arquivo: src/lib/supabase.js
-
-import { createClient } from "@supabase/supabase-js";
-export const supabase = createClient(import.meta.env.VITE_SUPABASE_URL, import.meta.env.VITE_SUPABASE_ANON_KEY);
-export function getAvatarUrl(playerId) {
-  try { return supabase.storage.from("avatars").getPublicUrl(`${String(playerId).toLowerCase()}.jpg`).data?.publicUrl || null; }
-  catch { return null; }
-}
-
-npm run dev       # desenvolvimento
-npm run build     # build de produção
-npm run preview   # preview do build
-
-⚠️ Dicas & Troubleshooting
-
-Tela vazia azul/roxa: geralmente erro de runtime em algum import/JSX.
-
-App.jsx usa React.lazy + <Suspense> para evitar “matar” o app; veja o console.
-
-DataGrid “invisível” no dark: garanta .mui-surface no container e estilos do index.css.
-
-Combobox não navega: ele retorna objeto { value, label }. O onChange já trata objeto ou string.
-
-Header.jsx: se ver erro do esbuild, revise tags e feche os elementos (tinha um </div> extra numa versão antiga).
-
-Leaflet: não esqueça import "leaflet/dist/leaflet.css"; nas páginas de mapa.
-
-🧱 Roadmap próximo (quando você der o “go”)
-
-Trocar mocks por Supabase (Auth + DB + Policies).
-
-Presença/placar/XP com RLS e ranking semanal server-side.
-
-Upload de avatar direto na ficha da jogadora (Storage signed URLs).
-
-Modo admin (criar partidas/times/jogadoras).
-
-🤝 Contribuir
-
-Branch por feature
-
-PR com descrição breve e screenshot/gif
-
-Sem segredos no repo: configure .env.local (ignored) e mantenha um README curto no PR

@@ -64,7 +64,7 @@ export default function Teams() {
                 initialState={{ pagination: { paginationModel: { pageSize: 10 } } }}
                 disableRowSelectionOnClick
                 onRowClick={(params) => {
-                  window.location.href = `/app/team/${params.id}`;
+                  navigate(`/app/team/${params.id}`);
                 }}
               />
             </div>
