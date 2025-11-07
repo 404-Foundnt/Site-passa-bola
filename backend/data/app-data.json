@@ -193,8 +193,8 @@
         { "title": "Visibilidade", "description": "Produção audiovisual e scouting compartilhado." }
       ],
       "founders": [
-        { "name": "Alê Xavier", "role": "Co-fundadora", "imageKey": "clara" },
-        { "name": "Luana Maluf", "role": "Co-fundadora", "imageKey": "helena" }
+        { "name": "Luana Maluf", "role": "Co-fundadora", "imageKey": "clara" },
+        { "name": "Alê Xavier", "role": "Co-fundadora", "imageKey": "helena" }
       ]
     },
     "tournaments": {
