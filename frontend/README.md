@@ -1,72 +1,71 @@
-# Passa a Bola ñ Frontend
+Ôªø# Passa a Bola ‚Äì Frontend
 
-SPA construÌda com **React + Vite** para o dashboard "Passa a Bola". A interface consome os dados da API local (pasta `backend/`), demonstra manipulaÁ„o de DOM/estado (dialogs, toasts, invalidaÁıes do React Query) e segue boas pr·ticas de acessibilidade (Radix UI + labels sr-only).
+SPA em React + Vite que consome a API local (pasta `backend/`) para exibir dashboard, partidas, ranking, p√°ginas p√∫blicas etc. Demonstra consumo de JSON local via fetch, manipula√ß√£o de DOM/estado (dialogs, toasts, invalidateQuery) e pr√°ticas de acessibilidade (Radix UI + labels sr-only).
 
 ## Stack
 - React 18, Vite 5
-- Tailwind CSS v4 (tokens em `src/index.css` via `@theme`)
-- Radix UI (Dialog, Dropdown, Popover)
-- MUI DataGrid / Date Pickers
-- Leaflet (mapas) + React Leaflet
-- @tanstack/react-query
-- Framer Motion, Dayjs, Sonner (toasts)
+- Tailwind CSS v4 (`@theme` em `src/index.css`)
+- Radix UI, MUI DataGrid/DatePicker
+- Leaflet + React Leaflet
+- @tanstack/react-query, Framer Motion, Sonner
 
 ## Requisitos
-- Node.js 18+ (20 recomendado)
-- API local rodando em `backend/` (Express + JSON local)
+- Node.js 18+
+- Backend rodando em `backend/` (Express)
 
 ## Como rodar
 1. **API**
    ```bash
    cd backend
    npm install
-   npm run dev # http://localhost:5050
+   npm run dev  # http://localhost:5050
    ```
 2. **Frontend**
    ```bash
    cd frontend
    npm install
-   npm run dev # http://localhost:5173
+   npm run dev   # http://localhost:5173
    ```
 
-   > O Vite j· redireciona chamadas para `/api` atÈ http://localhost:5050 em desenvolvimento. SÛ precisa criar `.env.local` se o backend estiver em outro host/porta (`VITE_API_URL=https://seu-backend`).
+> O Vite j√° proxia `/api` para `http://localhost:5050` em desenvolvimento. S√≥ crie `.env.local` com `VITE_API_URL=...` se usar outro host/porta.
 
+Build/preview: `npm run build` e `npm run preview`.
 
-
-Para build/preview: `npm run build` e `npm run preview`.
-
-## Estrutura principal
+## Estrutura
 ```
 frontend/
   src/
-    components/        # Layout, Combobox, PresenceDialog, etc.
-    pages/             # Dashboard, Matches, Teams, Public pages...
-    public/            # Landing/Home/Tournaments (via PublicLayout)
+    components/
+    pages/           # dashboard, leaderboard, matches...
+    public/          # Home/Tournaments (marketing)
     lib/
-      api.js          # FunÁıes usadas pelo React Query (buscam a API local)
-      localData.js     # Cache do fetch `${VITE_API_URL}/api/data`
-      auth.js, supabase.js
+      api.js        # usa getAppData() e React Query
+      localData.js  # fetch `/api/data` com cache
+      auth.js       # POST /api/users e /api/login
 ```
 
 ## Fluxo de dados
-- `backend/server.js` expıe `/api/data` (JSON completo) e endpoints derivados.
-- `src/lib/localData.js` busca esse JSON uma vez e compartilha via cache (reset·vel).
-- `src/lib/api.js` divide as fatias (dashboard, matches, leaderboards, etc.) e injeta em `useQuery`.
-- P·ginas p˙blicas (`Home`, `Tournaments`) tambÈm usam o hook para mostrar hero cards, programas e filtros sem arrays est·ticos.
-- Cadastro/login usa `POST /api/users` + `POST /api/login`, gravando em `backend/data/users.json` (a seÁ„o de "Cadastros recentes" demonstra isso).
+- Backend exp√µe `/api/data` e derivados a partir de `backend/data/app-data.json`.
+- `localData.js` faz o fetch uma vez e compartilha via cache (reset√°vel).
+- `api.js` fatia o JSON (dashboard, matches, leaderboard, etc.) para os hooks `useQuery`.
+- P√°ginas p√∫blicas (`Home`, `Tournaments`) tamb√©m usam a API, sem arrays est√°ticos.
+- Cadastro/Login usam `POST /api/users` e `POST /api/login`, gravando em `backend/data/users.json`; a se√ß√£o ‚ÄúCadastros recentes‚Äù l√™ de `/api/users` para provar o registro.
 
-## Destaques de interaÁ„o/DOM
-- `PresenceDialog`: salva presenÁa no `localStorage`, dispara toasts e invalida `['matches']` para atualizar DataGrid/cards imediatamente.
-- `CreateMatch`, `Calendar`, `Explore`: substituÌram `alert` por toasts + `useNavigate`, mantendo SPA.
-- Combobox tem `label` sr-only + `aria-labelledby`, e os inputs p˙blicos ganharam `<label class="sr-only">` para cumprir W3C.
-- A tela de cadastro lÍ/escreve a lista real de usu·rias (`/api/users`) e mostra o registro recÈm-criado direto do JSON da API.
+## Intera√ß√£o/DOM
+- `PresenceDialog` salva presen√ßa no `localStorage`, dispara toasts e invalida `['matches']` atualizando DataGrid/cards na hora.
+- `CreateMatch`, `Explore`, `Calendar` agora usam toasts + `useNavigate` (nada de `alert`).
+- Inputs p√∫blicos e Combobox ganharam `label` sr-only/`aria-labelledby` (W3C).
 
-## Rotas ˙teis
-- `/` p˙blico (Home, Tournaments, News)
-- `/login`, `/register` (mock)
-- `/app` + subrotas (Dashboard, Leaderboard, Matches, Teams, Player, Create Match, Calendar, Explore)
+## Rotas √∫teis
+- `/` p√∫blico (Home, Tournaments, News)
+- `/login`, `/register` (consumindo API real)
+- `/app/dashboard`, `/app/matches`, `/app/leaderboard`, `/app/teams`, `/app/player/:id`, `/app/create-match`, `/app/calendar`, `/app/explore`, etc.
 
-## ContribuiÁ„o
+## Notas
+- Novos cadastros aparecem em `backend/data/users.json` e no painel lateral de `/register`.
+- Para limpar sess√µes locais, remova `localStorage.pb_user`.
+- Os dados mockados est√£o em `backend/data/app-data.json`; altere ali para atualizar os cards do dashboard/p√°ginas p√∫blicas.
+
+## Contribui√ß√£o
 - Uma branch por feature.
-- Descrever no PR o que mudou e incluir passos de QA manual.
-
+- Rodar `npm run build` antes de PRs e listar passos de QA manual.
