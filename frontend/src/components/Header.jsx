@@ -68,7 +68,7 @@ export default function Header() {
       {mobileOpen && (
         <div className="fixed inset-0 z-50" role="dialog" aria-modal="true">
           <button className="absolute inset-0 bg-black/50" aria-label="Fechar menu" onClick={() => setMobileOpen(false)} />
-          <div className="absolute left-0 top-0 h-full w-72 max-w-[85vw] bg-[var(--bg-dark)] border-r border-white/10 shadow-xl p-4 flex flex-col">
+          <div className="absolute left-0 top-0 h-full w-72 max-w-[85vw] bg-[var(--bg)] border-r border-[var(--border-color)] shadow-xl p-4 flex flex-col">
             <div className="flex items-center justify-between mb-3">
               <div className="text-lg font-bold"><span className="text-pb-lilas">Passa</span> <span className="text-pb-verde">a Bola</span></div>
               <button className="btn btn-ghost rounded-full w-9 h-9 grid place-items-center" aria-label="Fechar" onClick={() => setMobileOpen(false)}>
@@ -86,7 +86,7 @@ export default function Header() {
                     key={item.to}
                     to={item.to}
                     end={item.end}
-                    className={({ isActive }) => `btn btn-ghost w-full justify-start gap-2 ${isActive ? "bg-pb-lilas/20 text-white" : "text-white/80"}`}
+                    className={({ isActive }) => `btn btn-ghost w-full justify-start gap-2 ${isActive ? "bg-pb-lilas/20 text-[var(--text-light)]" : "text-[var(--text-muted)]"}`}
                     onClick={() => setMobileOpen(false)}
                   >
                     <Icon size={18} />
