@@ -4,8 +4,8 @@ import links from "./navLinks";
 
 export default function AppLayout() {
   return (
-    <div className="min-h-screen grid md:grid-cols-[260px_1fr]">
-      <aside className="hidden md:flex flex-col gap-4 p-4 bg-black/40 border-r border-white/10">
+    <div className="public-theme min-h-screen grid md:grid-cols-[260px_1fr] bg-dots">
+      <aside className="hidden md:flex flex-col gap-4 p-4 bg-[var(--bg-off-dark)] border-r border-[var(--border-color)]">
         <div className="text-2xl font-bold tracking-tight">
           <span className="text-pb-lilas">Passa</span> <span className="text-pb-verde">a Bola</span>
         </div>
@@ -18,7 +18,7 @@ export default function AppLayout() {
                 to={item.to}
                 end={item.end}
                 className={({ isActive }) =>
-                  `btn btn-ghost justify-start gap-2 ${isActive ? "bg-pb-lilas/20 text-white" : "text-white/80"}`
+                  `btn btn-ghost justify-start gap-2 ${isActive ? "bg-pb-lilas/20 text-[var(--text-light)]" : "text-[var(--text-muted)]"}`
                 }
               >
                 <Icon size={18} />
@@ -37,4 +37,3 @@ export default function AppLayout() {
     </div>
   );
 }
-

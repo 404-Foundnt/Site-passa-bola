@@ -12,7 +12,7 @@ export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-40 bg-black/30 backdrop-blur border-b border-white/10">
+    <header className="sticky top-0 z-40 bg-[var(--bg-off-dark)]/90 backdrop-blur border-b border-[var(--border-color)]">
       <div className="max-w-7xl mx-auto px-3 sm:px-4 h-14 flex items-center gap-2 sm:gap-3">
         <button
           className="sm:hidden btn btn-ghost rounded-full w-10 h-10 grid place-items-center"

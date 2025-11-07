@@ -1,4 +1,4 @@
-import { LayoutDashboard, Trophy, CalendarDays, Users, User2, Map as MapIcon, PlusCircle, Compass } from "lucide-react";
+import { LayoutDashboard, Trophy, CalendarDays, Users, User2, Map as MapIcon, PlusCircle, Compass, Bell, Settings } from "lucide-react";
 
 const links = [
   { to: "/app", end: true, label: "Dashboard", icon: LayoutDashboard },
@@ -12,5 +12,10 @@ const links = [
   { to: "/app/profile", label: "Perfil", icon: User2 }
 ];
 
-export default links;
+// Extra items (requested): Notifications and Settings
+links.push(
+  { to: "/app/notifications", label: "Notificações", icon: Bell },
+  { to: "/app/settings", label: "Configurações", icon: Settings }
+);
 
+export default links;

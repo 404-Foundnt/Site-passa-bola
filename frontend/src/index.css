@@ -116,6 +116,13 @@ body {
   background-color: rgba(88,193,78,0.12);
 }
 
+/* Light overrides for MUI surface inside public-theme */
+.public-theme .mui-surface { background-color: rgba(255,255,255,0.92); border-color: rgba(15,23,42,0.08); }
+.public-theme .mui-surface .MuiDataGrid-root { color: #111827; }
+.public-theme .mui-surface .MuiDataGrid-columnHeaders { background-color: rgba(17,24,39,0.04); }
+.public-theme .mui-surface .MuiDataGrid-cell { border-color: rgba(15,23,42,0.08); }
+.public-theme .mui-surface .MuiTablePagination-root { color: #111827; }
+
 .public-theme .bg-dots {
   background-image: radial-gradient(circle at 25px 25px, rgba(17,24,39,0.05) 2%, transparent 0);
 }
