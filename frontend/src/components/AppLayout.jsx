@@ -42,9 +42,38 @@ export default function AppLayout() {
       </aside>
       <div className="min-h-screen">
         <Header />
-        <main className="p-4 md:p-8">
+        <main className="p-4 pb-16 md:pb-8 md:p-8">
           <Outlet />
         </main>
+        {/* Mobile bottom navigation */}
+        <nav className="md:hidden fixed bottom-0 inset-x-0 z-40 border-t border-white/10 bg-black/80 backdrop-blur">
+          <ul className="grid grid-cols-5 text-xs">
+            {[
+              { to: "/app", label: "Início", icon: LayoutDashboard, end: true },
+              { to: "/app/matches", label: "Partidas", icon: CalendarDays },
+              { to: "/app/teams", label: "Times", icon: Users },
+              { to: "/app/explore", label: "Explorar", icon: Compass },
+              { to: "/app/profile", label: "Perfil", icon: User2 }
+            ].map((item) => {
+              const Icon = item.icon;
+              return (
+                <li key={item.to}>
+                  <NavLink
+                    to={item.to}
+                    end={item.end}
+                    className={({ isActive }) =>
+                      `flex flex-col items-center justify-center py-2 ${isActive ? "text-white" : "text-white/70"}`
+                    }
+                    aria-label={item.label}
+                  >
+                    <Icon size={18} />
+                    <span className="mt-0.5">{item.label}</span>
+                  </NavLink>
+                </li>
+              );
+            })}
+          </ul>
+        </nav>
       </div>
     </div>
   );
