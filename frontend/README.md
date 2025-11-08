@@ -69,3 +69,9 @@ frontend/
 ## Contribuição
 - Uma branch por feature.
 - Rodar `npm run build` antes de PRs e listar passos de QA manual.
+
+## API na Vercel
+- A pasta `api/` replica o backend Express em uma única Serverless Function (`api/[[...route]].js`), então `/api/*` passa a ser servido direto pela Vercel.
+- Os arquivos `api/data/app-data.json` e `api/data/users.json` acompanham o bundle; use um banco real em produção, pois o filesystem da função é efêmero.
+- Para testar esse fluxo localmente, instale o Vercel CLI e rode `vercel dev` na raiz: ele sobe o Vite e encaminha `/api/*` para a função.
+- No deploy, basta `git push` para o projeto Vercel conectado a este repo; não é mais necessário subir o servidor em `backend/`.
